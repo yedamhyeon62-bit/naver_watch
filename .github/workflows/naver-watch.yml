@@ -1,0 +1,28 @@
+name: naver-watch
+on:
+  schedule:
+    - cron: "*/10 * * * *"
+  workflow_dispatch:
+    inputs:
+      debug:
+        description: "점검 모드"
+        type: boolean
+        default: false
+jobs:
+  watch:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install playwright requests && playwright install --with-deps chromium
+      - run: python naver_watch.py ${{ inputs.debug && '--debug' || '--once' }}
+        env:
+          NTFY_TOPIC: ${{ secrets.NTFY_TOPIC }}
+      - uses: actions/upload-artifact@v4
+        if: ${{ inputs.debug }}
+        with:
+          name: debug
+          path: debug/
