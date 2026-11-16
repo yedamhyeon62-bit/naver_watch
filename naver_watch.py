@@ -21,7 +21,7 @@ from playwright.sync_api import sync_playwright
 
 # ===== 설정 =====
 TARGET_DATES = ["2026-12-25"]      # 12/25 체크인 1박이면 25일 슬롯만 보면 됨
-NTFY_TOPIC = os.environ.get("NTFY_TOPIC", "내가-정한-비밀-이름")  # 영문/숫자/하이픈으로 남이 추측 못 할 이름으로 바꾸세요
+NTFY_TOPIC = os.environ.get("NTFY_TOPIC", "xmas-pyeongchang-7391")  # 영문/숫자/하이픈으로 남이 추측 못 할 이름으로 바꾸세요
 CHECK_EVERY = 600                  # 초 (10분). 너무 짧게 하면 차단될 수 있어요
 HOTELS = {
     "키스멧 코티지": "https://naver.me/5wrupUqR",
